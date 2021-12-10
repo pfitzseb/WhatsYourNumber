@@ -4,9 +4,15 @@ using Genie, Logging, LoggingExtras
 
 function main()
   Core.eval(Main, :(const UserApp = $(@__MODULE__)))
-  @warn "main() env" env=Base.ENV
   
+  println("Base ENV:")
   foreach((args...) -> println(args...), Base.ENV)
+  
+  println("Main ENV:")
+  foreach((args...) -> println(args...), Main.ENV)
+  
+  println("ENV:")
+  foreach((args...) -> println(args...), ENV)
   
   Genie.genie(; context = @__MODULE__)
 
